@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Scanning a onion</title>
+  <link rel="stylesheet" href="mark.css">
+  <link rel="stylesheet" href="custom.css">
+  <!-- PILL JS LOADER SYLE -->
+  <style>
+    #indicator {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      display: none;
+      background-color: #72b6b5;
+    }
+
+    .is-loading {
+      display: block;
+      animation: blink 1.5s linear infinite;
+    }
+
+    @keyframes blink {
+      from,
+      to {
+        background-color: #72b6b5;
+      }
+
+      50% {
+        background-color: #42b983;
+      }
+    }
+
+    #project-link {
+      display: block;
+      position: fixed;
+      padding: 8px;
+      top: 0;
+      right: 0;
+    }
+  </style>
+  <!-- PILL JS -->
+  <script src="pill.js"></script>
+  <script>
+    // this is for pill js as the normal link wont work
+    function openLink(url) {
+      window.open(url, "_blank");
+    }
+  </script>
+</head>
+
+  <body>
+    <div id="indicator"></div>
+    <div id="page">
+      <style>
+        .title {
+          color: #42b983;
+          font-size: 30px;
+          font-weight: bold;
+          text-align: center;
+          display: grid;
+        }
+        .meta {
+          font-size: 0.7rem;
+          font-weight: normal;
+          text-transform: uppercase;
+        }
+      </style>
+      <!-- header -->
+
+      <!-- nav -->
+      <nav>
+	
+		
+			<a href="https://0xreversing.github.io/">Home</a>
+		
+	
+</nav>
+      <!-- page content -->
+      <main class="content">
+        <p class="title">
+          Scanning onion <span class="meta">Written by 0xreversing</span>
+        </p>
+        <h2 id="Principal-id">Hace un tiempo estuve viendo formas de como escanear onions y ahora vengo a compartir esto,por motivos de seguridad y por no meterme en problemas hare esta demostracion en un sitio onion que creare yo,si solo ha venido a ver como escanear puede irse a la ultima parte espero que les sirva :D.</h2>
+
+<p>Bueno empezemos,primero vamos a instalar los paquetes que usaremos <em><strong>
+
+
+    -apt install nmap
+    -apt install proxychains4
+    -apt install tor
+    -apt install curl
+    (cabe recalcar que si estas en una distribucion como parrot,kali,backbox etc ya
+  tendras estas herramientas instaladas)
+</strong></em>,
+ luego de instalados los paquetes que usaremos sigamos con lo mas importante</p>
+
+<p>Lo principal viene ahora con lo que haremos en el archivo de configuracion de tor (torrc) para encontrar este archivo navegaremos hasta el directorio <em><strong>/etc/tor</strong></em> y vamos a editar el archivo en mi caso lo hare con vim y agregaremos las siguientes dos lienas<em><strong>
+
+
+    ControlPort 9051
+    CookieAuthentication 1</strong></em></p>
+
+<p><img src="Poner_torrc.png" alt="cronjob"></p>
+
+<p>Vale ahora en el torrc descomentaremos dos lienas del apartado de la seccion de servicios ocultos esto es lo que hara que nuestro servicio onion se cree</p>
+
+<p><img src="Quitar_hashtag.png" alt="permissions"></p>
+
+<p>Ahora iniciaremos el servicio apache con el comando <em><strong>service apache2 start</strong></em> esto hara que se inicie en segundo plano recuerden hacerlo con permisos de superusuario,luego abriremos otra terminal y pondremos el comando <em><strong>tor</strong></em> si bien podriamos solo hacer un service tor start esto podria generar fallas al estar corriendo tor en segundo plano</p>
+
+<p><img src="Apache.png" alt="key-gen"></p>
+
+<p>Ahora despues de aver iniciado el servicio apache y tor nos iremos al directorio en donde se guardo toda la informacion incluyendo la url de nuestra direccion onion, la ruta por defecto es /var/lib/tor/hidden_service</p>
+
+<p><img src="Hostname.png" alt="toBackup"></p>
+
+<p>Luego de esto haremos un curl a la direccion onion para asegurarnos que este funcionando y no haya algun problema</p>
+
+<p><img src="Curl.png" alt="imin"></p>
+
+<p>Listo!, ahora solo colocaremos el comando usando proxychains4 obviamente ustedes pueden hacer un nmap sin mas pero yo en mi caso agregare algunos argumentos extras <strong><em>proxychains4 -f /etc/proxychains.conf nmap -sC -sV -p 21,22,80,443 (url.onion)</em></strong>:</p>
+
+<p><img src="Comando.png" alt="userFlag"></p>
+
+<p><img src="Resultado.png" alt="userFlag"></p>
+
+<p>Como pueden ver tenemos el resultado y nos dio la version
+que corre en el servicio apache asi como la lista del index.</p>
+
+<p>Pues eso fue todo espero que le haya servido al que estaba en este problema :)</p>
+
+
+      </main>
+
+      <!-- footer -->
+      <footer>
+	<p>
+		Reversing
+	</p>
+	<p>
+		© 2020 | My website
+	</p>
+</footer>
+<script src="site.js" id="pill_site_script" type="module"></script>
+
+    </div>
+  
+
+</body></html>
