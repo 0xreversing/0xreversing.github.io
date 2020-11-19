@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Obteniendo informacion de onion</title>
+  <link rel="stylesheet" href="mark.css">
+  <link rel="stylesheet" href="custom.css">
+  <!-- PILL JS LOADER SYLE -->
+  <style>
+    #indicator {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      display: none;
+      background-color: #72b6b5;
+    }
+
+    .is-loading {
+      display: block;
+      animation: blink 1.5s linear infinite;
+    }
+
+    @keyframes blink {
+      from,
+      to {
+        background-color: #72b6b5;
+      }
+
+      50% {
+        background-color: #42b983;
+      }
+    }
+
+    #project-link {
+      display: block;
+      position: fixed;
+      padding: 8px;
+      top: 0;
+      right: 0;
+    }
+  </style>
+  <!-- PILL JS -->
+  <script src="pill.js"></script>
+  <script>
+    // this is for pill js as the normal link wont work
+    function openLink(url) {
+      window.open(url, "_blank");
+    }
+  </script>
+</head>
+
+  <body>
+    <div id="indicator"></div>
+    <div id="page">
+      <style>
+        .title {
+          color: #42b983;
+          font-size: 30px;
+          font-weight: bold;
+          text-align: center;
+          display: grid;
+        }
+        .meta {
+          font-size: 0.7rem;
+          font-weight: normal;
+          text-transform: uppercase;
+        }
+      </style>
+      <!-- header -->
+
+      <!-- nav -->
+      <nav>
+	
+		
+			<a href="https://0xreversing.github.io/">Home</a>
+		
+	
+</nav>
+      <!-- page content -->
+      <main class="content">
+        <p class="title">
+          Getting information from onions <span class="meta">Written by 0xreversing</span>
+        </p>
+        <h2 id="Principal-id">Esta vez voy a hacer algo un poco mas diferente, voy a hacer un pequeño script que nos de informacion de una web .onion :D.</h2>
+
+<p>Esto sera un poco breve debido a la simplicidad de la codificacion asi que empezemos, lo primero sera crear un archivo en python (ya que con este lenguaje se codificara el script) y escribire el codigo con vim,yo le puse a mi archivo <em><strong>"description.py"</strong></em></p>
+
+<p>Lo primero sera importar los modulos necesarios para empezar <em><strong>stem,sys,time,os</strong></em> stem es el modulo que usaremos para interactuar con tor se instala con <em><strong>pip3 install stem</strong></em></p>
+
+<p><img src="Modules.png" alt="cronjob"></p>
+
+<p>Ahora sigue hacer el esqueleto del script como sera automatizado hare una pregunta si iniciar tor o no con lo cual al poner "Y" se iniciara esto gracias al modulo os y el metodo system que permite ejecutar codigos en la maquina luego sera rellenar lo demas con condicionales (if,elif,else) y todo esto ira dentro de un try-except para efectuar excepciones</p>
+
+<p><img src="Esqueleto.png" alt="permissions"></p>
+
+<p>Luego de haber hecho el esqueleto probaremos si funciona y el serivicio tor inicia o si sucede alguna falla</p>
+
+<p><img src="Check_tor.png" alt="key-gen"></p>
+
+<p>Como se puede ver el script esta funcionando sin problemas de momento,sigamos ahora con la parte final, en la condicional if vamos a definir un puerto de control por donde hara la peticion a la onion el cual sera 9051 este mismo pondremos en nuestro torrc si no sabes como hacerlo puedes ver el tutorial de "Escaneo a una onion" en donde se explica,luego de haber definido el puerto de control vamos a cambiar el nombre a "controller" y vamos a iniciar el authenticado ya con esto simplemente le pasamos la funcion "controller.get_hidden_service_descriptor()"</p>
+
+<p><img src="Final_script.png" alt="toBackup"></p>
+
+<p>Ya con el script terminado vamos a proceder a ejecutarlo y el resultado es el siguiente</p>
+
+<p><img src="Final1.png" alt="imin"></p>
+
+<p><img src="Final2.png" alt="userFlag"></p>
+
+<p><img src="pikachu.jpg" alt="userFlag"></p>
+
+<p>Como se puede ver la informacion que nos da si bien no es mucha es muy importante para futuros ataques</p>
+
+<p>Espero te sirva :)</p>
+
+      </main>
+
+      <!-- footer -->
+      <footer>
+	<p>
+		Reversing
+	</p>
+	<p>
+		© 2020 | My website
+	</p>
+</footer>
+<script src="site.js" id="pill_site_script" type="module"></script>
+
+    </div>
+  
+
+</body></html>
